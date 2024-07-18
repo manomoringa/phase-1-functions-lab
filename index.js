@@ -1,3 +1,5 @@
+// Code your solution in this file!
+
 function distanceFromHqInBlocks(location) {
   return Math.abs(location - 42);
 }
@@ -13,7 +15,7 @@ function distanceTravelledInFeet(start, end) {
 function convertCentToDollarsAndCents(cents) {
   let dollars = Math.floor(cents / 100);
   let remainingCents = cents % 100;
-  let results = ${dollars}.${remainingCents.toString().padStart(2, "0")};
+  let results = `${dollars}.${remainingCents.toString().padStart(2, "0")}`;
 
   return parseFloat(results);
 }
