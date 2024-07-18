@@ -1,28 +1,32 @@
-function distanceFromHqInBlocks(pickupLocation) {
-    const headquarters = 42;
-    return Math.abs(pickupLocation - headquarters);
+function distanceFromHqInBlocks(location) {
+  return Math.abs(location - 42);
 }
 
-function distanceFromHqInFeet(pickupLocation) {
-    const blocks = distanceFromHqInBlocks(pickupLocation);
-    return blocks * 264;
-  }
+function distanceFromHqInFeet(location) {
+  return Math.abs(location - 42) * 264;
+}
 
-  function distanceTravelledInFeet(startBlock, endBlock) {
-    const blocksTravelled = Math.abs(endBlock - startBlock);
-    return blocksTravelled * 264;
-  }
+function distanceTravelledInFeet(start, end) {
+  return Math.abs(end - start) * 264;
+}
 
-  function calculatesFarePrice(start, destination) {
-    const distance = distanceTravelledInFeet(start, destination);
-    
-    if (distance <= 400) {
-      return 0;
-    } else if (distance > 400 && distance <= 2000) {
-      return (distance - 400) * 0.02;
-    } else if (distance > 2000 && distance <= 2500) {
-      return 25;
-    } else {
-      return 'cannot travel that far';
-    }
+function convertCentToDollarsAndCents(cents) {
+  let dollars = Math.floor(cents / 100);
+  let remainingCents = cents % 100;
+  let results = ${dollars}.${remainingCents.toString().padStart(2, "0")};
+
+  return parseFloat(results);
+}
+
+function calculatesFarePrice(start, end) {
+  const distance = distanceTravelledInFeet(start, end);
+  if (distance < 400) {
+    return 0;
+  } else if (distance > 400 && distance <= 2000) {
+    return convertCentToDollarsAndCents((distance - 400) * 2);
+  } else if (distance > 2000 && distance <= 2500) {
+    return 25;
+  } else {
+    return "cannot travel that far";
   }
+}
